@@ -1,7 +1,8 @@
 # Reproducible Research: Peer Assessment 1
 
 ## Prepare the R Environment
-Since we want the report to be reproducible, we will set the knitr option echo = TRUE so that someone else will be able to read the code, and we'd want the results to "hold" for throughout the entire report.
+
+Since we want the report to be reproducible, we will set the knitr option echo = TRUE so that someone else will be able to read the code, and we'd want the results to "hold"  throughout the entire report.
 
 
 ```r
@@ -110,6 +111,7 @@ sum(is.na(dat$steps))
 
 2. calculate the mean number of steps taken to use to fill in the NA values
 
+
 ```r
 mean(mean.steps$steps)
 ```
@@ -119,6 +121,7 @@ mean(mean.steps$steps)
 ```
 
 3.  create a new dataset with NAs filled by rereading the data into a new data frame, and NAs filled with the value of 37.8 
+
 
 ```r
 newdat <- data.frame(steps = dat$steps, date = dat$date, interval = dat$interval) # create a new dataset 
@@ -143,7 +146,7 @@ hist(newd.steps$steps, main = paste ("Histogram of Total Number of Steps Taken, 
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-1. create a factor variable that identifies the dates between weekdays and weekend. 
+1. create a factor variable that identifies the dates between weekdays and weekend
 
 
 ```r
@@ -153,7 +156,7 @@ mean <- aggregate(steps~interval + weekends, data=newdat, FUN="mean") # summariz
 mean$weekends <- factor(mean$weekends, labels = c("Weekdays", "Weekends")) # factorize the weekends variable from logical to factor and label it weekdays or weekends
 ```
 
-2. Second, compare the activitiy patterns by generating a panel chart to compare weekends versus weekdays
+2. compare the activitiy patterns by generating a panel chart to compare weekends versus weekdays
 
 
 ```r

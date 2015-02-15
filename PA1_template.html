@@ -66,7 +66,7 @@ img {
 
 <div id="prepare-the-r-environment" class="section level2">
 <h2>Prepare the R Environment</h2>
-<p>Since we want the report to be reproducible, we will set the knitr option echo = TRUE so that someone else will be able to read the code, and we’d want the results to “hold” for throughout the entire report.</p>
+<p>Since we want the report to be reproducible, we will set the knitr option echo = TRUE so that someone else will be able to read the code, and we’d want the results to “hold” throughout the entire report.</p>
 <pre class="r"><code>library(knitr)</code></pre>
 <pre><code>## Warning: package 'knitr' was built under R version 3.1.2</code></pre>
 <pre class="r"><code>opts_chunk$set(echo = TRUE, results = 'hold')</code></pre>
@@ -152,14 +152,14 @@ hist(newd.steps$steps, main = paste (&quot;Histogram of Total Number of Steps Ta
 <div id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="section level2">
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
 <ol style="list-style-type: decimal">
-<li>create a factor variable that identifies the dates between weekdays and weekend.</li>
+<li>create a factor variable that identifies the dates between weekdays and weekend</li>
 </ol>
 <pre class="r"><code>newdat$date&lt;-as.Date(as.character(newdat$date)) # convert date field to as.Date so that R knows to handle it as date
 newdat$weekends&lt;- weekdays(newdat$date) == &quot;Sunday&quot; | weekdays(newdat$date) == &quot;Saturday&quot; # create a new variable that identifies the row data as weekends or not, weekends being Sunday and Saturday
 mean &lt;- aggregate(steps~interval + weekends, data=newdat, FUN=&quot;mean&quot;) # summarize the mean number of steps taken across the 5-minute intervals by weekends or not 
 mean$weekends &lt;- factor(mean$weekends, labels = c(&quot;Weekdays&quot;, &quot;Weekends&quot;)) # factorize the weekends variable from logical to factor and label it weekdays or weekends</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Second, compare the activitiy patterns by generating a panel chart to compare weekends versus weekdays</li>
+<li>compare the activitiy patterns by generating a panel chart to compare weekends versus weekdays</li>
 </ol>
 <pre class="r"><code>library(lattice)
 x &lt;- xyplot(steps~interval| weekends, data = mean, layout = c(1, 2), type=&quot;l&quot;, main = &quot;Average Activity Pattern: Weekdays vs Weekends&quot;, ylab = &quot;Average Number of Steps Taken&quot;, xlab = &quot;Average Five-Minute Interval&quot; )
